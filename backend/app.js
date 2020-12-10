@@ -1,14 +1,33 @@
-const http = require('http');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const request = require('request');
+const path = require('path');
+const PORT = 4200;
 
-const hostname = '127.0.0.1';
-const port = 3000;
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+app.use('/', express.static(path.join(__dirname, '..', 'dist')));
+
+app.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, X-OUID, Authorization'
+  );
+
+  req.headers = {
+    Authorization: req.headers.authorization,
+    'Content-Type': req.headers['content-type'],
+    'X-OUID': req.headers['x-ouid'],
+  };
+
+  next();
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(PORT, () => {
+    console.log(`Example app listening at http://localhost:${PORT}`);
+  });
+  
