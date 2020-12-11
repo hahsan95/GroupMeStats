@@ -1,6 +1,9 @@
 # github
 .github 
 
+# environment
+.env
+
 # compiled output
 /dist
 /tmp
@@ -41,7 +44,6 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-.secrets
 
 # System Files
 .DS_Store

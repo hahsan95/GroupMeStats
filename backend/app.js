@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -5,7 +6,7 @@ const request = require('request');
 const path = require('path');
 const PORT = 4200;
 
-const groupme = require('./services/groupme'),
+const groupme = require('./services/groupme');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

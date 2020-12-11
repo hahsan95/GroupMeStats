@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "serve:local": "ng build && node backend/app.js",
+    "serve:local": "ng build && node -r dotenv/config backend/app.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
