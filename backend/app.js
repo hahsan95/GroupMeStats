@@ -5,10 +5,13 @@ const request = require('request');
 const path = require('path');
 const PORT = 4200;
 
+const groupme = require('./services/groupme'),
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/', express.static(path.join(__dirname, '..', 'dist')));
+app.use('/groupme', groupme);
 
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
