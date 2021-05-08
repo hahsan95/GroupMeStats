@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const request = require('request');
 const path = require('path');
+const axios = require('axios');
+const secrets = require('../secrets');
+
 const PORT = 4200;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,6 +29,13 @@ app.all('*', function (req, res, next) {
 
   next();
 });
+
+app.get('/groups', async (req, res, next) => {
+  axios.get(`https://api.groupme.com/v3/groups${process.env.API_KEY}`)
+  .then((response) => {
+    res.send(response.data.response);
+  })
+})
 
 app.listen(PORT, () => {
     console.log(`Example app listening at http://localhost:${PORT}`);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { GroupService } from '../../services/group.service';
 
 declare interface RouteInfo {
   path: string;
@@ -74,9 +75,12 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() {}
+  constructor(private groupService: GroupService) {}
 
   ngOnInit() {
+    this.groupService.getGroups().subscribe(res => {
+      console.log('***: ', res);
+    })
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
