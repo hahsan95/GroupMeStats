@@ -85,9 +85,6 @@ export class SidebarComponent implements OnInit {
   constructor(private groupService: GroupService) {}
 
   ngOnInit() {
-    this.groupService.getGroups().subscribe(res => {
-      console.log('***: ', res);
-    })
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
