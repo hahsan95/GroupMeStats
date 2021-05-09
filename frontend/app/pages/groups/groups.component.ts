@@ -2,10 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import Chart from 'chart.js';
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "dashboard.component.html"
+  selector: "app-groups",
+  templateUrl: "groups.component.html"
 })
-export class DashboardComponent implements OnInit {
+export class GroupsComponent implements OnInit {
   public canvas : any;
   public ctx;
   public datasets: any;
